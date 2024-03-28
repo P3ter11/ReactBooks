@@ -6,10 +6,17 @@ import Welcome from './components/Welcome'
 import AllTheBooks from './components/AllTheBooks'
 import { Container } from 'react-bootstrap'
 import React, { createContext, useState } from "react";
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BookDetails } from './components/BookDetails'
 
 export const ThemeContext = createContext();
 
 function App() {
+  const [selected, setSelected] = useState(false);
+
+  const handleClick = (book) => {
+    setSelected(book);
+  };
 
   const [searchQuery, setSearchQuery] = useState("");
 
@@ -20,16 +27,25 @@ function App() {
   }
   /* const useTheme = () => useContext(ThemeContext); */
   return (
-    
-    <ThemeContext.Provider value={{theme, toggleTheme}}>
-      <MyNav searchQuery = {searchQuery} setSearchQuery = {setSearchQuery}/>
-    
-      <Container>
-        <Welcome />
-        <AllTheBooks searchQuery = {searchQuery}/>
-      </Container>
+    <BrowserRouter>   
+      <ThemeContext.Provider value={{theme, toggleTheme}}>
+        <MyNav searchQuery={searchQuery} setSearchQuery={setSearchQuery}/>
+        <Routes>
+          <Route path='/' 
+          element=
+          {<Container>
+            <Welcome />
+            <AllTheBooks selected={selected} handleClick={handleClick} searchQuery = {searchQuery}/>
+          
+          </Container>}/>
+          <Route path='/book/:asin' element={<BookDetails selected={selected} handleClick={handleClick}/>}/>
+
+        </Routes>
+
+        
+      </ThemeContext.Provider>
       <MyFooter />
-    </ThemeContext.Provider>
+    </BrowserRouter>
     
   )
 }

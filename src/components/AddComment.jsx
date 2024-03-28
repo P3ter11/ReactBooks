@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Button, Form } from 'react-bootstrap'
 
-const AddComment = ({ asin }) => {
+const AddComment = ({ asin, fetchComments }) => {
   const [comment, setComment] = useState({
     comment: '',
     rate: 1,
@@ -36,6 +36,7 @@ const AddComment = ({ asin }) => {
           rate: 1,
           elementId: null,
         })
+        fetchComments();
       } else {
         throw new Error('Qualcosa è andato storto')
       }

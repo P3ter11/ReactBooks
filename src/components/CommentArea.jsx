@@ -1,10 +1,11 @@
-import { useEffect, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import CommentList from './CommentList'
 import AddComment from './AddComment'
 import Loading from './Loading'
 import Error from './Error'
 
-const CommentArea = ({ asin, title }) => {
+
+const CommentArea = ({ asin, selectedTitle }) => {
   const [comments, setComments] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const [isError, setIsError] = useState(false)
@@ -20,7 +21,6 @@ const CommentArea = ({ asin, title }) => {
           },
         }
       )
-      console.log(response)
       if (response.ok) {
         let comments = await response.json()
         setComments(comments)
@@ -47,11 +47,11 @@ const CommentArea = ({ asin, title }) => {
 
   return (
     <div className="text-center">
-      <h1>{title}</h1>
+      <h1>{selectedTitle}</h1>
       {isLoading && <Loading />}
       {isError && <Error />}
-      <AddComment asin={asin} />
-      <CommentList commentsToShow={comments} />
+      <AddComment asin={asin} fetchComments={getComments}/>
+      <CommentList commentsToShow={comments} fetchComments={getComments} />
     </div>
   )
 }

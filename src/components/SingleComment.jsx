@@ -1,6 +1,6 @@
 import { Button, ListGroup } from 'react-bootstrap'
 
-const SingleComment = ({ comment }) => {
+const SingleComment = ({ comment, fetchComments }) => {
   const deleteComment = async (asin) => {
     try {
       let response = await fetch(
@@ -14,6 +14,7 @@ const SingleComment = ({ comment }) => {
       )
       if (response.ok) {
         alert('La recensione è stata elimata!')
+        fetchComments();
       } else {
         throw new Error('La recensione non è stata eliminata!')
       }
