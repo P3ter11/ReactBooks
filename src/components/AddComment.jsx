@@ -12,7 +12,7 @@ const AddComment = ({ asin, fetchComments }) => {
     setComment((c) => ({
       ...c,
       elementId: asin,
-    }))
+    }));
   }, [asin])
 
   const sendComment = async (e) => {
@@ -25,7 +25,7 @@ const AddComment = ({ asin, fetchComments }) => {
           body: JSON.stringify(comment),
           headers: {
             'Content-type': 'application/json',
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ2MGE4YmEzM2ZjOTAwMTk2NTgzZGMiLCJpYXQiOjE3MTA2MDI3NjUsImV4cCI6MTcxMTgxMjM2NX0.yBQl59etN21AW2nSIeKWaI307gdQ3giLEXo_vtXBZHw',
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ2MGE4YmEzM2ZjOTAwMTk2NTgzZGMiLCJpYXQiOjE3MTIwNjU3MjMsImV4cCI6MTcxMzI3NTMyM30.11NJFUNn9w1XBUquKZkPFGkmaKiLR-XAUVjJp-gK-BI',
           },
         }
       )
@@ -81,7 +81,7 @@ const AddComment = ({ asin, fetchComments }) => {
             <option>5</option>
           </Form.Control>
         </Form.Group>
-        <Button variant="primary" type="submit">
+        <Button variant="success" type="submit">
           Invia
         </Button>
       </Form>

@@ -12,12 +12,6 @@ import { BookDetails } from './components/BookDetails'
 export const ThemeContext = createContext();
 
 function App() {
-  const [selected, setSelected] = useState(false);
-
-  const handleClick = (book) => {
-    setSelected(book);
-  };
-
   const [searchQuery, setSearchQuery] = useState("");
 
   const [theme, setTheme] = useState("light");
@@ -35,10 +29,10 @@ function App() {
           element=
           {<Container>
             <Welcome />
-            <AllTheBooks selected={selected} handleClick={handleClick} searchQuery = {searchQuery}/>
+            <AllTheBooks searchQuery = {searchQuery}/>
           
           </Container>}/>
-          <Route path='/book/:asin' element={<BookDetails selected={selected} handleClick={handleClick}/>}/>
+          <Route path='/book/:asin' element={<BookDetails/>}/>
 
         </Routes>
 

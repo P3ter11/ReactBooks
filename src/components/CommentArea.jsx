@@ -1,8 +1,9 @@
-import { createContext, useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import CommentList from './CommentList'
 import AddComment from './AddComment'
 import Loading from './Loading'
 import Error from './Error'
+import './CommentArea.css'
 
 
 const CommentArea = ({ asin, selectedTitle }) => {
@@ -17,7 +18,7 @@ const CommentArea = ({ asin, selectedTitle }) => {
         'https://striveschool-api.herokuapp.com/api/comments/' + asin,
         {
           headers: {
-            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ2MGE4YmEzM2ZjOTAwMTk2NTgzZGMiLCJpYXQiOjE3MTA2MDI3NjUsImV4cCI6MTcxMTgxMjM2NX0.yBQl59etN21AW2nSIeKWaI307gdQ3giLEXo_vtXBZHw',
+            Authorization: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ2MGE4YmEzM2ZjOTAwMTk2NTgzZGMiLCJpYXQiOjE3MTIwNjU3MjMsImV4cCI6MTcxMzI3NTMyM30.11NJFUNn9w1XBUquKZkPFGkmaKiLR-XAUVjJp-gK-BI',
           },
         }
       )
@@ -46,7 +47,7 @@ const CommentArea = ({ asin, selectedTitle }) => {
   }, [asin])
 
   return (
-    <div className="text-center">
+    <div className="comment-area">
       <h1>{selectedTitle}</h1>
       {isLoading && <Loading />}
       {isError && <Error />}
